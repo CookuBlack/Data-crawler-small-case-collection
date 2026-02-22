@@ -298,7 +298,7 @@ if __name__ == '__main__':
 
 ## 简单的网络架构
 
-![image-20241001221722779](.\Asset\image-20241001221722779.png)
+![image-20241001221722779](./assets/image-20241001221722779.png)
 
 **Python 网络爬虫技术：**
 
@@ -1113,7 +1113,7 @@ pip3 install beautifulsoup4
 
 通过浏览器的调试功能（F12 快捷键）可以定位到标题元素在源码中的位置：
 
-![453995991061cefe731818bfac0353c](.\Asset\453995991061cefe731818bfac0353c.png)
+![453995991061cefe731818bfac0353c](./assets/453995991061cefe731818bfac0353c.png)
 
 可以看到标题元素在`<a>`标签中，并且该标签在`<table id = "threadlisttableid">`标签下，并且通过观察可以看到所有的标题都在各个`<table id = "threadlisttableid">`标签下，并且`<table id = "threadlisttableid">`该标签是独立的（相对唯一），因此可以使用属性定位来定位到所有的`<table id = "threadlisttableid">`标签，然后在向下搜索得到需要的值，代码编写如下：
 
@@ -1123,7 +1123,7 @@ title_temp = selector.xpath('//table[@id="threadlisttableid"]/tbody/tr/th/a[@cla
 
 ### 作者：
 
-![301a6aa4c660599aef3bfdbb1944f93](.\Asset\301a6aa4c660599aef3bfdbb1944f93.png)
+![301a6aa4c660599aef3bfdbb1944f93](./assets/301a6aa4c660599aef3bfdbb1944f93.png)
 
 通过观察可以看到各个作者标签都在在各个`<div class="foruminfo">`的标签下，且是独立的（相对唯一），因此同样可以使用属性定位到该标签，之后一个标签为`<span>`标签，代码编写如下：
 
@@ -1133,7 +1133,7 @@ author_temp = selector.xpath('//div[@class="foruminfo"]/i[2]/span/a/text()')
 
 ### 日期：
 
-![f9b0792cacdb68012b99207d327a6fb](.\Asset\f9b0792cacdb68012b99207d327a6fb.png)
+![f9b0792cacdb68012b99207d327a6fb](./assets/f9b0792cacdb68012b99207d327a6fb.png)
 
 与**作者**分析一样，日期标签也在各个`<div class="foruminfo">`标签下，因此也可以使用属性定位来找到该标签，不同的是，日期标签是`<div class="foruminfo">`下的第二个子标签`<i>`，因此可以使用索引的方式来进行定位，代码如下：
 
@@ -1147,7 +1147,7 @@ date_temp = selector.xpath('//div[@class="foruminfo"]/i[2]/text()')
 
 再次分析网页，可以发现，存在**下一页**按钮，并且**下一页**按钮对应的源码中，其属性就是下一页的网址，所以我们可以不断的爬取每一页的**下一页**网页，然后不断请求，直到不存在**下一页**按钮，即返回一个**空列表**时，爬取结束，**下一页**按钮在源码中定位如下：
 
-![b4e10b93577e3ceec2b619e0abbd9f0](.\Asset\b4e10b93577e3ceec2b619e0abbd9f0.png)
+![b4e10b93577e3ceec2b619e0abbd9f0](./assets/b4e10b93577e3ceec2b619e0abbd9f0.png)
 
 细心的观察，可以发现，**下一页**按钮只存在于`<a class="nxt">`标签中，因此可以直接使用属性定位直接定位到该标签，然后取其`href`属性值即可，代码编写如下：
 
